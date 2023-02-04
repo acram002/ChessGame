@@ -15,7 +15,11 @@ public class ChessGame {
         Scanner input = new Scanner(System.in);
 
         while (true) {
-            System.out.println(board);
+       //     ChessBoardDisplay display = new ChessBoardDisplay(board);
+       //     display.main(null);
+        	//ChessBoardDisplay();
+            //System.out.println(board);
+        	board.printBoard();
             System.out.println("Enter the coordinates of the piece you want to move (e.g. a2): ");
             String start = input.nextLine();
             int x1 = 8 - (start.charAt(1) - '0');

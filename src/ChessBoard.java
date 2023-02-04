@@ -33,7 +33,7 @@ public class ChessBoard {
             board[6][i] = new Pawn(false);
         }
     }
-
+    
     public ArrayList<ChessMove> getValidMoves(int x, int y) {
         ArrayList<ChessMove> moves = new ArrayList<ChessMove>();
         ChessPiece piece = board[x][y];
@@ -57,9 +57,45 @@ public class ChessBoard {
         if (validMoves.contains(move)) {
             board[move.x2][move.y2] = board[move.x1][move.y1];
             board[move.x1][move.y1] = null;
+            printBoard();
             return true;
         } else {
             return false;
         }
     }
+    
+    public ChessPiece getPiece(int x, int y) {
+        return board[x][y];
+    }
+
+
+    
+    public void printBoard() {
+        System.out.println("  A B C D E F G H");
+        for (int i = 0; i < 8; i++) {
+            System.out.print((8 - i) + " ");
+            for (int j = 0; j < 8; j++) {
+                ChessPiece piece = board[i][j];
+                if (piece == null) {
+                    System.out.print("- ");
+                } else {
+                    if (piece instanceof King) {
+                        System.out.print((piece.isWhite() ? "K " : "k "));
+                    } else if (piece instanceof Queen) {
+                        System.out.print((piece.isWhite() ? "Q " : "q "));
+                    } else if (piece instanceof Rook) {
+                        System.out.print((piece.isWhite() ? "R " : "r "));
+                    } else if (piece instanceof Bishop) {
+                        System.out.print((piece.isWhite() ? "B " : "b "));
+                    } else if (piece instanceof Knight) {
+                        System.out.print((piece.isWhite() ? "N " : "n "));
+                    } else if (piece instanceof Pawn) {
+                        System.out.print((piece.isWhite() ? "P " : "p "));
+                    }
+                }
+            }
+            System.out.println();
+        }
+    }
+
 }
